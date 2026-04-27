@@ -1,16 +1,15 @@
 node {
-  stage('Build') {
-      // Run Build commands
-      sh echo '"Building the job......"'
-  }
-  stage('Test') {
-      // Run test commands
-      sh echo '"Test the job...."'
-  }
-  stage('Deploy') {
-      // Deploy command
-      sh echo '"Deploy the project...."'
-  }
-}     
+    stage('Build') {
+        sh 'echo "Building the job......"'
+    }
+
+    stage('Test') {
+        sh 'echo "Test the job...."'
+    }
+
+    stage('Deploy') {
+        sh 'echo "Deploy the project...."'
+    }
+}
   
       
