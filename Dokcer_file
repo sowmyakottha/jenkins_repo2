@@ -1,0 +1,23 @@
+Pipeline {
+    agent any
+    stages{
+       stage('Build') {
+          steps {
+             sh 'mvn clean package'
+        }
+    }
+    stage ('Test') {
+       steps {
+          sh 'mvn Test'
+       }
+    }
+    stage ('Docker Build') {
+       steps { 
+          sh 'docker build -t java-jenkis-docker:latest
+       }
+    }
+    stage ('Docker Run') {
+       steps {
+          sh 'docker run -t java-jenkins-docer:latest
+        }
+    }
