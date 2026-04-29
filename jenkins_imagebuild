@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        IMAGE_NAME = "java-jenkins-app"
-        TAG = "latest"
-    }
-
     stages {
 
         stage('Checkout') {
@@ -16,26 +11,17 @@ pipeline {
 
         stage('Build Maven') {
             steps {
-                sh 'mvn clean package'
+                dir('Docker_file') {
+                    sh 'mvn clean package'
+                }
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t $IMAGE_NAME:$TAG .'
-            }
-        }
-
-        stage('Check Images') {
-            steps {
-                sh 'docker images'
-            }
-        }
-
-        stage('Run Container') {
-            steps {
-                sh 'docker rm -f javaapp || true'
-                sh 'docker run -d --name javaapp -p 8080:8080 $IMAGE_NAME:$TAG'
+                dir('Docker_file') {
+                    sh 'docker build -t myapp:latest .'
+                }
             }
         }
     }
