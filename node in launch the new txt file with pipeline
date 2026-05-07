@@ -1,0 +1,27 @@
+pipeline {
+    agent {
+        label 'new-worker-node'
+    }
+
+    stages {
+
+        stage('Build') {
+            steps {
+                echo 'Building...'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Running tests....'
+            }
+        }
+
+        stage('Creating a New File') {
+            steps {
+                // Deploy step (dummy for now)
+                sh 'touch new.txt'
+            }
+        }
+    }
+}
